@@ -116,7 +116,11 @@ public class MSButton
         if(gameOver) return;
         clicked = true;
         if(keyPressed)
+        {
             marked = !marked;
+            if(!marked)
+              clicked = false;
+        }
         else if(bombs.contains(this))
         {
             displayLosingMessage();
