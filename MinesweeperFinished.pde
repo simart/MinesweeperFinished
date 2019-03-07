@@ -114,8 +114,8 @@ public class MSButton
     public void mousePressed () 
     {
         if(gameOver) return;
-        clicked = true;
-        if(keyPressed)
+        
+        if(!clicked && (keyPressed || mouseButton == RIGHT))
         {
             marked = !marked;
             if(!marked)
@@ -127,9 +127,13 @@ public class MSButton
             gameOver = true;
         }
         else if(countBombs(r,c) > 0)
+        {
+            clicked = true;
             label = "" + countBombs(r,c);
+        }
         else
         {
+           clicked = true;
            if(isValid(r-1,c) && !buttons[r-1][c].clicked)
               buttons[r-1][c].mousePressed();
            if(isValid(r+1,c) && !buttons[r+1][c].clicked)
